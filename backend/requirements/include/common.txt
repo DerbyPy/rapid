@@ -1,0 +1,8 @@
+flake8
+flask-webtest
+KegElements
+mock
+pyquery
+pytest
+pytest-cov
+tox

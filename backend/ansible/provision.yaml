@@ -1,0 +1,16 @@
+
+- name: web app provision
+  hosts: webservers
+  vars_files:
+    - "{{ lookup('env','ANSIBLE_ROLES_PATH') }}/includes/vars.yml"
+    - secretvars.yaml
+  vars:
+    project_user_authorized_keys:
+      - "{{ssh_public_keys.rsyring}}"
+      - "{{ssh_public_keys.nharmon}}"
+      - "{{ssh_public_keys.mlewellyn}}"
+  tags:
+    - web
+  roles:
+    - { role: pyapp3, pyapp3_op: provision, tags: pyapp3-role}
+

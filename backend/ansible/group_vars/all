@@ -1,0 +1,50 @@
+
+use_pvt_dns: false
+
+project_ident: rapid
+
+app_db_host: "nix03.level12.net"
+
+# Host and ip setup
+network_domain: level12.net
+host_fqdn: "{{inventory_hostname}}.{{network_domain}}"
+host_ip: "{{ lookup('pipe', 'dig +short ' + host_fqdn) }}"
+host_fqdn_pvt: "{{inventory_hostname}}.pvt.{{network_domain}}"
+host_ip_pvt: "{{ lookup('pipe', 'dig +short ' + host_fqdn_pvt) }}"
+
+ansible_ssh_host: "{{ host_fqdn_pvt if use_pvt_dns else host_fqdn }}"
+ansible_service_mgr: systemd
+
+app_db_user: "{{project_ident_env}}"
+app_db_name: "{{project_ident_env}}"
+
+app_bin: "{{pyapp3_venv_bin_dpath}}/{{project_ident}}"
+app_error_notifications: devteam@level12.io
+
+app_rabbitmq_vhost: "{{project_ident_env}}"
+app_rabbitmq_user: "{{project_ident_env}}"
+
+app_celery_dir: '{{ project_home_dpath }}/celery'
+app_celery_pid_fpath: /tmp/{{ project_ident }}_celery.pid
+
+nginx_vhost_name: "{{project_ident}}"
+nginx_vhost_enable_static_route: false
+nginx_vhost_www_only: false
+nginx_vhost_enable_ssl: true
+nginx_vhost_ssl_cert_fpaths:
+    - /etc/ssl/certs/level12biz.crt
+    - /etc/ssl/certs/level12biz-bundle.crt
+nginx_vhost_ssl_cert_key_fpath: /etc/ssl/private/level12biz.key
+
+pyapp3_app_type: wsgi
+# If you change this, make sure you change the pip version used in wheelhouse.ini.
+pyapp3_python_version: 3.6
+pyapp3_settings_dest_fpath: "{{ pyapp3_source_dpath }}/{{project_ident}}-config.py"
+pyapp3_settings_src_fpath: "files/{{project_ident}}-config.py"
+
+pyapp3_repo_url: "ssh://git@github.com/DerbyPy/rapid"
+pyapp3_wsgi_extras_all:
+  - "# Note about disable file wrapper: https://level12.atlassian.net/wiki/pages/viewpage.action?pageId=75981397"
+  - "wsgi-disable-file-wrapper=true"
+  - "# Any files created by the app user should be read/write for app user & user both."
+  - "umask=002"

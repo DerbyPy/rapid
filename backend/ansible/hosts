@@ -1,0 +1,15 @@
+[webservers]
+admiral
+bank
+
+[beta]
+bank
+
+[prod]
+admiral
+
+[old-webservers]
+# In a real project, you would not have the same servers here.  But the point of this app is
+# to excercise the Ansible roles, so we setup and remove from the same servers for this app.
+admiral
+bank

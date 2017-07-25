@@ -1,0 +1,12 @@
+#!/bin/sh
+# This file gets symlinked to .git/hooks/pre-commit
+# The CWD when this file is executed is the git project root.
+command_exists () {
+    command -v $1 >/dev/null 2>&1;
+}
+
+if [ -z "$VIRTUAL_ENV" ] && command_exists vex; then
+    vex racebetter scripts/flake8-precommit
+else
+    scripts/flake8-precommit
+fi

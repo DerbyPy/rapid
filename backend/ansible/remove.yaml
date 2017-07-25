@@ -1,0 +1,6 @@
+- name: web app remove
+  hosts: old-webservers
+  tags:
+    - web
+  roles:
+    - { role: pyapp3, pyapp3_op: remove, tags: pyapp3-role}

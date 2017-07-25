@@ -1,0 +1,14 @@
+
+- name: web app deploy
+  hosts: webservers
+  gather_facts: true
+  become: false
+  vars_files:
+    - "{{ lookup('env','ANSIBLE_ROLES_PATH') }}/includes/vars.yml"
+    - secretvars.yaml
+  remote_user: "{{project_user}}"
+  tags:
+    - web
+  roles:
+    - { role: pyapp3, pyapp3_op: deploy, tags: pyapp3-role}
+

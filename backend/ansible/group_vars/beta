@@ -1,0 +1,16 @@
+project_ident_env: rapid-beta
+
+
+app_sentry_dsn: "{{ app_sentry_dsn_beta }}"
+app_flask_secret_key: "{{ app_flask_secret_key_beta }}"
+app_db_pass: "{{ app_db_pass_beta }}"
+
+nginx_vhost_server_name: "{{project_ident_env}}.level12.biz"
+
+pyapp3_repo_rev: master
+
+pyapp3_wsgi_extras_beta:
+  -
+
+pyapp3_wsgi_extras: "{{ pyapp3_wsgi_extras_all + pyapp3_wsgi_extras_beta }}"
+

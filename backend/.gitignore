@@ -1,0 +1,10 @@
+*.komodo*
+*.pyc
+*.egg-info
+rapid-config.py
+ansible/vaultpass.txt
+*.coverage
+.tox
+/coverage.xml
+.pytests.xml
+htmlcov
