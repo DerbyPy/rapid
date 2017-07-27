@@ -9,3 +9,4 @@ from rapid.views import public
 class Rapid(Keg):
     import_name = 'rapid'
     use_blueprints = [public]
+    db_enabled = True

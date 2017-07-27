@@ -1,6 +1,8 @@
 flake8
 flask-webtest
 KegElements
+marshmallow-jsonschema
+marshmallow-sqlalchemy
 mock
 pyquery
 pytest
