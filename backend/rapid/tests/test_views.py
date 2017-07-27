@@ -40,7 +40,11 @@ class TestAPI(ViewBase):
         resp = self.ta.get('/api/user/schema')
         schema = resp.json
         props = schema['properties']
+
         dependents = props['dependents']
-        assert dependents['title'] == 'dependents'
+        assert dependents['title'] == 'Dependents'
         assert dependents['type'] == 'integer'
         assert 'format' not in dependents
+
+        name_first = props['name_first']
+        assert name_first['title'] == 'First Name'

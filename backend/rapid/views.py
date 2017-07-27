@@ -2,6 +2,7 @@ import logging
 
 import flask
 from marshmallow_jsonschema import JSONSchema
+from blazeutils.strings import case_us2cw
 
 from .model import entities as ents
 from .model import schemas
@@ -28,6 +29,14 @@ class _JSONSchema(JSONSchema):
         if pytype is int:
             json_schema['type'] = 'integer'
             del json_schema['format']
+        title = json_schema['title']
+        if 'name' in title:
+            parts = title.split('_')
+            parts.reverse()
+            title = ' '.join(parts).title()
+        else:
+            title = title.replace('_', ' ').title()
+        json_schema['title'] = title
         return json_schema
 
 

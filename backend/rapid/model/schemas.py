@@ -3,7 +3,6 @@ import logging
 from keg.db import db
 from marshmallow import validate
 import marshmallow_sqlalchemy as masa
-
 from ..model import entities as ents
 
 log = logging.getLogger(__name__)
