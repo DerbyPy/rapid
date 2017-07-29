@@ -1,7 +1,5 @@
 import datetime as dt
 
-import arrow
-
 import rapid.model.entities as ents
 import rapid.model.schemas as schemas
 
@@ -23,6 +21,8 @@ class TestUserSchema:
         )
 
         data = schemas.user.dump(bob).data
+
+        assert not data.errors
 
         assert data['name_first'] == 'bob'
         assert data['name_last'] == 'smith'

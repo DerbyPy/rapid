@@ -2,7 +2,6 @@ import logging
 
 import flask
 from marshmallow_jsonschema import JSONSchema
-from blazeutils.strings import case_us2cw
 
 from .model import entities as ents
 from .model import schemas
