@@ -5,7 +5,7 @@ import Form from "react-jsonschema-form";
 const log = (type) => console.log.bind(console, type);
 
 
-class App extends Component {
+class Form2 extends Component {
   constructor(props) {
     super(props);
 
@@ -39,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Form2;
