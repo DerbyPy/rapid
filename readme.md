@@ -20,3 +20,10 @@ Proof of concept: [rapid on Github](https://github.com/DerbyPy/rapid/)
     - [bug report](https://github.com/fuhrysteve/marshmallow-jsonschema/issues/40)
     - [quick fix](https://github.com/DerbyPy/rapid/blob/master/backend/rapid/views.py#L28)
 3. Form field names aren't pretty, [use better titles](https://github.com/DerbyPy/rapid/blob/master/backend/rapid/views.py#L31).
+
+
+## Known Issues
+
+* marshmallow-jsonschema can't handle Enums
+* react-jsonschema-form will handle nested records, but not clear how to get a Parent/Child
+  relationship through our SA/marshmallow stack so that works.

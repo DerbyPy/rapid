@@ -1,7 +1,7 @@
 import logging
 
 from keg.db import db
-from marshmallow import validate
+from marshmallow import validate, fields
 import marshmallow_sqlalchemy as masa
 from ..model import entities as ents
 
@@ -33,10 +33,19 @@ class _ModelSchema(masa.ModelSchema):
     OPTIONS_CLASS = _BaseOpts
 
 
+class UserEmailSchema(_ModelSchema):
+    class Meta:
+        model = ents.UserEmail
+
+
 class UserSchema(_ModelSchema):
+    #emails = fields.Nested(UserEmailSchema, only=["email"])
+
     class Meta:
         model = ents.User
 
+
+#artist = fields.Nested(ArtistSchema())
 
 user = UserSchema()  # noqa
 users = UserSchema(many=True)  # noqa
